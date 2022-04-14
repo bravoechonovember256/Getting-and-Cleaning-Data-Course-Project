@@ -12,12 +12,12 @@ for future work. Please refer to the README.Rmd in this repository for details
 on the original dataset. This project takes a raw dataset and transforms it 
 into tidy data suitable for further analysis.
 
-##The script: run_analysis.R
+## The script: run_analysis.R
 
 The script breaks the project into 7 parts, and it depends on the dplyr and 
 data.table packages to run. 
 
-#1. Download & Unzip into working directory
+# 1. Download & Unzip into working directory
 
 ```{r}
 url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"  
@@ -26,7 +26,7 @@ download.file(url,destfile=dataset,mode='wb')
 unzip(zipfile="./dataset.zip")
 ```
 
-#2. Import 8 required files into R. 
+# 2. Import 8 required files into R. 
 
 ```{r}
 # Descriptions
@@ -47,7 +47,7 @@ y_test <- read.table("UCI HAR Dataset/test/y_test.txt" , col.names = "code")
 The column names for the x_test and x_train data are in the features.txt file, 
 and are imported as shown. 
 
-#3. Combine datasets
+# 3. Combine datasets
 
 Six individual tables from the training and test data will be combined to form
 our final dataset, as shown.
@@ -70,7 +70,7 @@ data_test <- bind_cols(subject_test,y_test,x_test)
 data_all <- bind_rows(data_train,data_test)
 ```
 
-#4. Subset data to include only mean & standard deviation values
+# 4. Subset data to include only mean & standard deviation values
 
 Next, we'll subset our data to include only our subject and code variables, and
 any columns that include mean or standard deviation data. I made a copy of the 
@@ -83,7 +83,7 @@ data_tidy <- data_all %>% select (subject,code,contains("mean"),contains("std"))
 untidy_names <- colnames(data_tidy)
 ```
 
-#5. Transform Column names into descriptive titles 
+# 5. Transform Column names into descriptive titles 
 
 To transform the column names into descriptive titles, we use the gsub function
 to change multiple names at once. Example as shown:
@@ -104,7 +104,7 @@ tidy_names <- colnames(data_tidy)
 name_changes <- tibble(untidy_names,tidy_names)
 ```
 
-#6. Create final summary table of data
+# 6. Create final summary table of data
 
 Next, we created a summary table that shows the average value for each activity,
 for each participant in the study, and swap out the code column for the activity 
@@ -121,7 +121,7 @@ data_final$code <- activities[match(data_final$code,activities$code), ]$activity
 data_final <- data_final %>% rename(Activity=code)
 ```
 
-#7. Write a copy of the new tidy dataset to the working directory.
+# 7. Write a copy of the new tidy dataset to the working directory.
 
 Finally, we write a copy of the tidy dataset to Tidy.txt for inclusion in the 
 repository.
@@ -131,7 +131,7 @@ repository.
 write.table(data_final, file = "Tidy.txt", row.names = FALSE)
 ```
 
-#8. Upload to Github
+# 8. Upload to Github
 
 Final upload to Github includes this Codebook, a README file, the run_analysis.R
 script, and the Tidy.txt cleaned dataset. 
