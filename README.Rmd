@@ -1,0 +1,47 @@
+---
+title: "README"
+author: "Ben Graham"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+# Getting-and-Cleaning-Data-Course-Project
+
+## The Raw Data
+
+The raw data was collected from accelerometers from the Samsung Galaxy S smartphone. A full description is available at the site where the data was obtained: http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
+
+The complete raw dataset can be found here: https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+
+## The Assignment
+
+The file run_analysis.R can be found in this repository. It includes all code 
+required to complete the following:
+
+1. Merge the training and the test sets to create one data set.
+2. Extract only the measurements on the mean and standard deviation for each 
+   measurement. 
+3. Use descriptive activity names to name the activities in the data set
+4. Appropriately label the data set with descriptive variable names. 
+5. From the data set in step 4, creates a second, independent tidy data set 
+   with the average of each variable for each activity and each subject.
+   
+## The Tidy Dataset
+
+The output Tidy.txt file conforms to tidy data standards and can be found in
+this repository.
+
+## The Code Book
+
+The codebook for this project can be found in this repository as codebook.md.
+It includes all details for the transformation process
+
+
+    
+    
+    
+    
+    
+    
+    
+    
