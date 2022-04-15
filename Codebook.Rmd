@@ -104,6 +104,12 @@ tidy_names <- colnames(data_tidy)
 name_changes <- tibble(untidy_names,tidy_names)
 ```
 
+```{r}
+library(knitr)
+kable(name_changes,caption="Variable Names")
+```
+
+
 # 6. Create final summary table of data
 
 Next, we created a summary table that shows the average value for each activity,

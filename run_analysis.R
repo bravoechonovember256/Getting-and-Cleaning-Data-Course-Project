@@ -14,8 +14,8 @@ unzip(zipfile="./dataset.zip")
 # 2 - Import Datasets
 
 # Descriptions
-features <- read.table("UCI HAR Dataset/features.txt",col_names=c("n","measure"))
-activities <- read.table("UCI HAR Dataset/activity_labels.txt",col_names=c("code","activity"))
+features <- read.table("UCI HAR Dataset/features.txt",col.names=c("n","measure"))
+activities <- read.table("UCI HAR Dataset/activity_labels.txt",col.names=c("code","activity"))
 # Training Data
 subject_train <- read.table("UCI HAR Dataset/train/subject_train.txt", col.names = "subject")
 x_train <- read.table("UCI HAR Dataset/train/X_train.txt", col.names = features$measure)
@@ -38,7 +38,7 @@ data_all <- bind_rows(data_train,data_test)
 # Create data subset
 data_tidy <- data_all %>% select (subject,code,contains("mean"),contains("std"))
 # Create vector of column names
-messy_names <- colnames(data_tidy)
+untidy_names <- colnames(data_tidy)
 
 # Transform column Names
 names(data_tidy) <- gsub("BodyBody","Body",names(data_tidy))
@@ -75,6 +75,10 @@ names(data_tidy) <- gsub("Meaneq..","Weighted Mean",names(data_tidy))
 tidy_names <- colnames(data_tidy)
 # Reference of old names / new names
 name_changes <- tibble(untidy_names,tidy_names)
+
+# Table of Variable Names
+library(knitr)
+kable(name_changes,caption="Variable Names")
 
 # 5 - Create final dataset
 
