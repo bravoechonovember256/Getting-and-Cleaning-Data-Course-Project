@@ -17,6 +17,16 @@ into tidy data suitable for further analysis.
 The script breaks the project into 7 parts, and it depends on the dplyr and 
 data.table packages to run. 
 
+# 0. Dependencies
+
+```{r}
+install.packages("tidyverse")
+library(tidyverse)
+library(data.table)
+library(dplyr)
+library(knitr)
+```
+
 # 1. Download & Unzip into working directory
 
 ```{r}
@@ -52,11 +62,7 @@ and are imported as shown.
 Six individual tables from the training and test data will be combined to form
 our final dataset, as shown.
 
-  A tibble: 2 x 3
-  subject       y_data  x_data 
-  <chr>         <chr>   <chr>  
-1 subject_train y_train x_train
-2 subject_test  y_test  x_test 
+kable(data_format,caption="Data Structure")
 
 First, we'll column bind our training and test sets together horizontally, and  
 then we'll row bind the two sets together vertically. 
@@ -105,7 +111,6 @@ name_changes <- tibble(untidy_names,tidy_names)
 ```
 
 ```{r}
-library(knitr)
 kable(name_changes,caption="Variable Names")
 ```
 

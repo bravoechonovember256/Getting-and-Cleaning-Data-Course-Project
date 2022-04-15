@@ -27,6 +27,11 @@ y_test <- read.table("UCI HAR Dataset/test/y_test.txt" , col.names = "code")
 
 # 3 - Combine Datasets
 
+data_format <- tibble(c("subject_train","subject_test"),
+                      c("y_train","y_test"),
+                      c("x_train","x_test"))
+data_structure <- kable(data_format,caption="Data Structure")       
+
 # Bind Columns for Training & Test Sets
 data_train <- bind_cols(subject_train,y_train,x_train)
 data_test <- bind_cols(subject_test,y_test,x_test)
