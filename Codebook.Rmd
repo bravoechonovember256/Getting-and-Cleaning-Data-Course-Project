@@ -62,7 +62,10 @@ and are imported as shown.
 Six individual tables from the training and test data will be combined to form
 our final dataset, as shown.
 
+```{r}
 kable(data_format,caption="Data Structure")
+```
+
 
 First, we'll column bind our training and test sets together horizontally, and  
 then we'll row bind the two sets together vertically. 
