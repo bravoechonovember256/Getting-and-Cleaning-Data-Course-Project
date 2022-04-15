@@ -20,7 +20,6 @@ data.table packages to run.
 # 0. Dependencies
 
 ```{r}
-install.packages("tidyverse")
 library(tidyverse)
 library(data.table)
 library(dplyr)
@@ -40,8 +39,8 @@ unzip(zipfile="./dataset.zip")
 
 ```{r}
 # Descriptions
-features <- read.table("UCI HAR Dataset/features.txt",col_names=c("n","measure"))
-activities <- read.table("UCI HAR Dataset/activity_labels.txt",col_names=c("code","activity"))
+features <- read.table("UCI HAR Dataset/features.txt",col.names=c("n","measure"))
+activities <- read.table("UCI HAR Dataset/activity_labels.txt",col.names=c("code","activity"))
 
 # Training Data
 subject_train <- read.table("UCI HAR Dataset/train/subject_train.txt", col.names = "subject")
@@ -62,6 +61,12 @@ and are imported as shown.
 Six individual tables from the training and test data will be combined to form
 our final dataset, as shown.
 
+```{r}
+data_format <- tibble(Subject=c("subject_train","subject_test"),
+                      Activity=c("y_train","y_test"),
+                      Data=c("x_train","x_test"))
+data_structure <- kable(data_format,caption="Data Structure") 
+```
 ```{r}
 kable(data_format,caption="Data Structure")
 ```
@@ -89,7 +94,7 @@ column names at this point, before we continue.
 # Create data subset
 data_tidy <- data_all %>% select (subject,code,contains("mean"),contains("std"))
 # Create vector of column names
-untidy_names <- colnames(data_tidy)
+untidy_names <- colnames(data_all %>% select (subject,code,contains("mean"),contains("std")))
 ```
 
 # 5. Transform Column names into descriptive titles 

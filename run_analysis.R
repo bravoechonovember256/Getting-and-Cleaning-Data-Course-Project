@@ -27,9 +27,9 @@ y_test <- read.table("UCI HAR Dataset/test/y_test.txt" , col.names = "code")
 
 # 3 - Combine Datasets
 
-data_format <- tibble(c("subject_train","subject_test"),
-                      c("y_train","y_test"),
-                      c("x_train","x_test"))
+data_format <- tibble(Subject=c("subject_train","subject_test"),
+                      Activity=c("y_train","y_test"),
+                      Data=c("x_train","x_test"))
 data_structure <- kable(data_format,caption="Data Structure")       
 
 # Bind Columns for Training & Test Sets
@@ -43,7 +43,7 @@ data_all <- bind_rows(data_train,data_test)
 # Create data subset
 data_tidy <- data_all %>% select (subject,code,contains("mean"),contains("std"))
 # Create vector of column names
-untidy_names <- colnames(data_tidy)
+untidy_names <- colnames(data_all %>% select (subject,code,contains("mean"),contains("std")))
 
 # Transform column Names
 names(data_tidy) <- gsub("BodyBody","Body",names(data_tidy))
